@@ -779,7 +779,7 @@ label::after {
 
     left: 50%;
     margin-left: -230px;
-    margin-top: 140px;
+    /* margin-top: 140px; */
     margin-bottom: 60px;
     text-align: center;
     padding: 40px 60px;
