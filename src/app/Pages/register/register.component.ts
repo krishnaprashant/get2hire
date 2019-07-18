@@ -9,6 +9,7 @@ import {
 import { Register } from "src/app/Model/Register.model";
 import { RegisterService } from "src/app/services/register.service";
 import { first } from "rxjs/operators";
+import { FileUploadService } from "src/app/services/file-upload.service";
 
 @Component({
   selector: "app-register",
@@ -20,14 +21,25 @@ export class RegisterComponent implements OnInit {
   register: Register;
   isSubmitted: boolean = false;
 
+  fileUpload = { status: "", message: "", filepath: "" };
+
   get f() {
     return this.RegisterForm.controls;
   }
 
   constructor(
     private formBuilder: FormBuilder,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private fileUploadService: FileUploadService
   ) {}
+
+  onSelectedFile(event) {
+    if (event.target.files.length > 0) {
+      const profile = event.target.files[0];
+      this.RegisterForm.get("profilePic").setValue(profile);
+      console.log(event.target.files);
+    }
+  }
   ngOnInit() {
     this.RegisterForm = this.formBuilder.group({
       name: [
@@ -71,6 +83,7 @@ export class RegisterComponent implements OnInit {
     this.isSubmitted = true;
     if (this.RegisterForm.valid) {
       console.log(e);
+      const formData = new FormData();
       this.register = new Register();
       this.register.name = this.f.name.value;
       this.register.email = this.f.email.value;
@@ -89,6 +102,13 @@ export class RegisterComponent implements OnInit {
         .subscribe(data => {
           console.log("the component Data:" + data);
         });
+      formData.append("profile", this.RegisterForm.get("profilePic").value);
+      this.fileUploadService
+        .upload(formData)
+        .subscribe
+        // res => this.fileUpload = res,
+        // err => this.error = err
+        ();
     }
   }
 }

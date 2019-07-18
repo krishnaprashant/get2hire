@@ -353,13 +353,14 @@
                           ><i class="glyphicon glyphicon-upload"></i
                         ></span>
                         <input
-                          type="file"
-                          name="file_nm"
+                          type="file"                          
                           id="file_nm"
                           class="form-control upload"
                           placeholder=""
                           aria-describedby="file_upload"
-                          formControlName="profilePic"
+                          
+                          name="profilePic"
+                          (change)="onSelectedFile($event)"                          
                         />
                       </div>
                       <div
