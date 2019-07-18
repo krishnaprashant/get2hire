@@ -1,0 +1,400 @@
+<app-header-all></app-header-all>
+<section>
+  <div class="block no-padding  gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="inner2">
+            <div class="inner-title2">
+              <h3>Register</h3>
+              <span>Keep up to date with the latest news</span>
+            </div>
+            <div class="page-breacrumbs">
+              <ul class="breadcrumbs">
+                <li><a href="#" title="">Home</a></li>
+                <li><a href="#" title="">Pages</a></li>
+                <li><a href="#" title="">Register</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="block remove-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h3>Sign Up</h3>
+          <span>
+            Please enter the required details in form below.
+          </span>
+          <div class="select-user">
+            <span id="applicant_tab">Applicant</span>
+            <span id="employer_tab">Employer</span>
+          </div>
+          <div id="applicant_form">
+            <div class="signup-popup-box static">
+              <div class="account-popup account-popup-override">
+                <form
+                  [formGroup]="RegisterForm"
+                  novalidate
+                  (ngSubmit)="onSubmit(RegForm)"
+                  #RegForm="ngForm"
+                >
+                  <!-- form starts -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div
+                        class="cfield"
+                        [ngClass]="{
+                          'feild-error': isSubmitted && f.name.errors?.required
+                        }"
+                      >
+                        <input
+                          type="text"
+                          placeholder="Name"
+                          formControlName="name"
+                          required
+                        />
+                        <i class="la la-user"></i>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.name.errors?.required"
+                      >
+                        <small>Required</small>
+                      </div>
+                      <div
+                        class="cfield"
+                        [ngClass]="{
+                          'feild-error':
+                            (isSubmitted && f.email.errors?.required) ||
+                            f.email.errors?.email
+                        }"
+                      >
+                        <input
+                          type="text"
+                          placeholder="Email"
+                          formControlName="email"
+                        />
+                        <i class="la la-envelope-o"></i>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.email.errors?.required"
+                      >
+                        <small>Required</small>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.email.errors?.email"
+                      >
+                        <small>Email is invalid</small>
+                      </div>
+                      <div
+                        class="cfield"
+                        [ngClass]="{
+                          'feild-error':
+                            (isSubmitted && f.phone.errors?.required) ||
+                            f.phone.errors?.minlength ||
+                            f.phone.errors?.pattern
+                        }"
+                      >
+                        <input
+                          type="text"
+                          placeholder="Phone Number"
+                          formControlName="phone"
+                        />
+                        <i class="la la-phone"></i>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.phone.errors?.required"
+                      >
+                        <small>Required</small>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="
+                          (isSubmitted && f.phone.errors?.minlength) ||
+                          f.phone.errors?.pattern
+                        "
+                      >
+                        <small>Phone number is not valid</small>
+                      </div>
+                      <div
+                        class="cfield"
+                        [ngClass]="{
+                          'feild-error':
+                            (isSubmitted && f.password.errors?.required) ||
+                            f.password.errors?.minlength ||
+                            f.password.errors?.pattern
+                        }"
+                      >
+                        <input
+                          type="password"
+                          placeholder="********"
+                          formControlName="password"
+                        />
+                        <i class="la la-key"></i>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.password.errors?.required"
+                      >
+                        <small>Required</small>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.password.errors?.pattern"
+                      >
+                        <small
+                          >1 Capital Letter and Alphanumeric Password is
+                          expected</small
+                        >
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.password.errors?.minlength"
+                      >
+                        <small>Min 8 charecters</small>
+                      </div>
+                      <div
+                        class="cfield"
+                        [ngClass]="{
+                          'feild-error':
+                            isSubmitted && f.prefferedLocation.errors?.required
+                        }"
+                      >
+                        <input
+                          type="text"
+                          placeholder="Preferred job location"
+                          formControlName="prefferedLocation"
+                        />
+                        <i class="la la-map-marker"></i>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="
+                          isSubmitted && f.prefferedLocation.errors?.required
+                        "
+                      >
+                        <small>Required</small>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div
+                        class="cfield"
+                        [ngClass]="{
+                          'feild-error':
+                            isSubmitted && f.expertise.errors?.required
+                        }"
+                      >
+                        <input
+                          type="text"
+                          placeholder="Domain of Expertise"
+                          formControlName="expertise"
+                        />
+                        <i class=""></i>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.expertise.errors?.required"
+                      >
+                        <small>Required</small>
+                      </div>
+                      <div
+                        class="dropdown-field"
+                        [ngClass]="{
+                          'feild-error':
+                            isSubmitted && f.experience.errors?.required
+                        }"
+                      >
+                        <select
+                          class="browser-default custom-select"
+                          formControlName="experience"
+                        >
+                          <option selected>Experience or Fresher</option>
+                          <option>Fresher</option>
+                          <option>1 year</option>
+                          <option>2 years</option>
+                          <option>3 years</option>
+                          <option>4 years</option>
+                          <option>5 years</option>
+                          <option>5-7 years</option>
+                          <option>7-10 years</option>
+                          <option>Above 10 years</option>
+                        </select>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.experience.errors?.required"
+                      >
+                        <small>Required</small>
+                      </div>
+                      <div
+                        class="cfield"
+                        [ngClass]="{
+                          'feild-error':
+                            isSubmitted && f.percentage.errors?.required
+                        }"
+                      >
+                        <input
+                          type="text"
+                          placeholder="Percentage (aggregate)"
+                          formControlName="percentage"
+                        />
+                        <i class=""></i>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.percentage.errors?.required"
+                      >
+                        <small>Required</small>
+                      </div>
+                      <div
+                        class="cfield"
+                        [ngClass]="{
+                          'feild-error':
+                            isSubmitted && f.qualification.errors?.required
+                        }"
+                      >
+                        <input
+                          type="text"
+                          placeholder="Highest Qulafication"
+                          formControlName="qualification"
+                        />
+                        <i class=""></i>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.qualification.errors?.required"
+                      >
+                        <small>Required</small>
+                      </div>
+                      <div
+                        class="cfield"
+                        [ngClass]="{
+                          'feild-error':
+                            isSubmitted && f.branch.errors?.required
+                        }"
+                      >
+                        <input
+                          type="text"
+                          placeholder="Branch or Domain"
+                          formControlName="branch"
+                        />
+                        <i class=""></i>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.branch.errors?.required"
+                      >
+                        <small>Required</small>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div
+                        class="cfield"
+                        [ngClass]="{
+                          'feild-error':
+                            isSubmitted && f.passout.errors?.required
+                        }"
+                      >
+                        <input
+                          type="text"
+                          placeholder="Year of Pass Out"
+                          formControlName="passout"
+                        />
+                        <i class=""></i>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.passout.errors?.required"
+                      >
+                        <small>Required</small>
+                      </div>
+                      <div
+                        class="dropdown-field"
+                        [ngClass]="{
+                          'feild-error':
+                            isSubmitted && f.gender.errors?.required
+                        }"
+                      >
+                        <select
+                          class="browser-default custom-select"
+                          formControlName="gender"
+                        >
+                          <option selected>Open this select menu</option>
+                          <option>Male</option>
+                          <option>Female</option>
+                        </select>
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.gender.errors?.required"
+                      >
+                        <small>Required</small>
+                      </div>
+                      <div
+                        class="cfield"
+                        [ngClass]="{
+                          'feild-error':
+                            isSubmitted && f.profilePic.errors?.required
+                        }"
+                      >
+                        <span class="input-group-addon" id="file_upload"
+                          ><i class="glyphicon glyphicon-upload"></i
+                        ></span>
+                        <input
+                          type="file"
+                          name="file_nm"
+                          id="file_nm"
+                          class="form-control upload"
+                          placeholder=""
+                          aria-describedby="file_upload"
+                          formControlName="profilePic"
+                        />
+                      </div>
+                      <div
+                        class="error"
+                        *ngIf="isSubmitted && f.profilePic.errors?.required"
+                      >
+                        <small>Required</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pull-left">
+                    <button type="submit" [disabled]="">
+                      Signup
+                    </button>
+                  </div>
+                  <!-- form ends -->
+                </form>
+              </div>
+            </div>
+          </div>
+          <app-register-employer id="employer_form"></app-register-employer>
+        </div>
+            <div class="extra-login">
+              <span>Or</span>
+              <div class="login-social">
+                <a class="fb-login" href="#" title="">
+                  <i class="fa fa-facebook"></i>
+                </a>
+                <a class="tw-login" href="#" title=""
+                  ><i class="fa fa-twitter"></i>
+                </a>
+              </div>
+            </div>
+        <!-- SIGNUP POPUP -->
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
+<app-login-modal></app-login-modal>
