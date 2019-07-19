@@ -37,7 +37,7 @@
             <span id="employer_tab">Employer</span>
           </div>
           <div id="applicant_form">
-            <div class="signup-popup-box static">
+            <div id="RegistrationForm" class="signup-popup-box static">
               <div class="account-popup account-popup-override">
                 <form
                   [formGroup]="RegisterForm"
@@ -353,14 +353,13 @@
                           ><i class="glyphicon glyphicon-upload"></i
                         ></span>
                         <input
-                          type="file"                          
+                          type="file"
                           id="file_nm"
                           class="form-control upload"
                           placeholder=""
                           aria-describedby="file_upload"
-                          
                           name="profilePic"
-                          (change)="onSelectedFile($event)"                          
+                          (change)="onSelectedFile($event)"
                         />
                       </div>
                       <div

@@ -403,4 +403,9 @@ $(document).ready(function() {
     $("#applicant_form").hide();
     $("#employer_form").show();
   });
+
+  $(".close-popup-x").on("click", function() {
+    $(".signin-popup-box").fadeOut("fast");
+    $("html").removeClass("no-scroll");
+  });
 });
