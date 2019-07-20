@@ -20,7 +20,7 @@ export class RegisterService {
       .post<any>(this.url, registser, this.httpOptions)
       .pipe(
         map(data => {
-          console.log(data);
+          console.log("service response: " + data);
           return data;
         })
       );

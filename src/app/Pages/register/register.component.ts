@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
   RegisterForm: FormGroup;
   register: Register;
   isSubmitted: boolean = false;
+  picName: string;
 
   fileUpload = { status: "", message: "", filepath: "" };
 
@@ -38,6 +39,11 @@ export class RegisterComponent implements OnInit {
       const profile = event.target.files[0];
       this.RegisterForm.get("profilePic").setValue(profile);
       console.log(event.target.files);
+      let r = Math.random()
+        .toString(36)
+        .substring(7);
+      this.picName = r + profile.name;
+      console.log(this.picName);
     }
   }
   ngOnInit() {
@@ -102,13 +108,11 @@ export class RegisterComponent implements OnInit {
         .subscribe(data => {
           console.log("the component Data:" + data);
         });
+      formData.append("picName", this.picName);
       formData.append("profile", this.RegisterForm.get("profilePic").value);
       this.fileUploadService
         .upload(formData)
-        .subscribe
-        // res => this.fileUpload = res,
-        // err => this.error = err
-        ();
+        .subscribe(data => console.log("image response:" + data));
     }
   }
 }
