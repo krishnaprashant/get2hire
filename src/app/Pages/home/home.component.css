@@ -2,3 +2,49 @@
   background: url(/assets/images/resource/parallax2.jpg) repeat scroll 50%
     422.28px transparent;
 }
+.autocomplete-myitems {
+  position: absolute;
+  top: 70px;
+  left: 0px;
+  background: white;
+  width: 250px;
+  text-align: center;
+  z-index: 99;
+  border: 1px solid #e5e5e5;
+}
+.autocomplete-li {
+  border-top: 1px solid #6f717d;
+  padding: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .autocomplete-myitems {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    background: white;
+    width: 450px;
+    text-align: center;
+    z-index: 99;
+    border: 1px solid #e5e5e5;
+  }
+}
+
+#location {
+  position: absolute;
+  border: 0px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #5d606b;
+}
+
+.background-black-blur {
+  height: 872px;
+  background: black;
+  opacity: 0.6;
+}
+.background-img {
+  height: 872px;
+  background: url("/assets/images/resource/mslider2.jpg") no-repeat;
+  background-size: cover;
+}

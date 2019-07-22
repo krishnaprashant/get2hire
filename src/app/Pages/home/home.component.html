@@ -5,38 +5,45 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="main-featured-sec style2">
-							<ul class="main-slider-sec style2 text-arrows">
-								<li class="slideHome"><img src="assets/images/resource/mslider3.jpg" alt="" /></li>
-								<li class="slideHome"><img src="assets/images/resource/mslider2.jpg" alt="" /></li>
-								<li class="slideHome"><img src="assets/images/resource/mslider1.jpg" alt="" /></li>
-							</ul>
+							<div class="background-img">
+								<div class="background-black-blur">
+								</div>
+							</div>
 							<div class="job-search-sec">
 								<div class="job-search style2">
 									<h3>The Easiest Way to Get Your New Job</h3>
 									<span>Find Jobs, Employment & Career Opportunities</span>
 									<div class="search-job2">	
-										<form>
-											<div class="row no-gape">
+										<form autocomplete="off" [formGroup]="SearchForm">
+											<div class="row no-gape">												
 												<div class="col-lg-4 col-md-3 col-sm-4">
-													<div class="job-field">
-														<input type="text" placeholder="Keywords" />
+														<div class="job-field">
+															<input formControlName="keywords"  id="keyword" type="text" placeholder="Keywords" />
+														</div>
+													</div>
+													<div class="col-lg-3 col-md-3 col-sm-4">
+														<div class="dropdown-field">
+														<!-- <input formControlName="location" id="location" type="text" placeholder="Location" /> -->
+														<select id="location" class="browser-default custom-select">
+															<option disabled [selected]="true">Location</option>
+															<option>Hyderabad</option>
+															<option>Bangalore</option>
+															<option>Chennai</option>
+															
+														</select>
+														
 													</div>
 												</div>
 												<div class="col-lg-3 col-md-3 col-sm-4">
 													<div class="job-field">
-														<input type="text" placeholder="Location" />
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-3 col-sm-4">
-													<div class="job-field">
-														<input type="text" placeholder="Skill" />
+														<input formControlName="skills" id="skills" type="text" placeholder="Skill" />
 													</div>
 												</div>
 												<div class="col-lg-2  col-md-3 col-sm-12">
-													<button type="submit">FIND JOB <i class="la la-search"></i></button>
+													<button type="button" (click)="onClickSearch()">FIND JOB <i class="la la-search"></i></button>
 												</div>
 											</div>
-										</form>
+										</form>										
 									</div><!-- Job Search 2 -->
 									<div class="quick-select-sec">
 										<div class="row">

@@ -41,7 +41,8 @@
               "src/assets/js/slick.min.js",
               "src/assets/js/parallax.js",
               "src/assets/js/select-chosen.js",
-              "src/assets/js/counter.js"
+              "src/assets/js/counter.js",
+              "src/assets/js/prashant-autocomplete.js"
             ]
           },
           "configurations": {

@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { ApplicantDashboardComponent } from "./Pages/applicant-dashboard/applicant-dashboard.component";
 import { RegisterEmployerComponent } from './Pages/register-employer/register-employer.component';
+import { TestComponent } from './Test/test/test.component';
+import { JobResultsComponent } from './Pages/job-results/job-results.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { RegisterEmployerComponent } from './Pages/register-employer/register-em
     RegisterComponent,
     LoginModalComponent,
     ApplicantDashboardComponent,
-    RegisterEmployerComponent
+    RegisterEmployerComponent,
+    TestComponent,
+    JobResultsComponent
   ],
   imports: [
     BrowserModule,

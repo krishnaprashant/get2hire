@@ -1003,7 +1003,7 @@ label::after {
 .job-search-sec {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 350px;
     width: 1180px;
     content: "";
     
