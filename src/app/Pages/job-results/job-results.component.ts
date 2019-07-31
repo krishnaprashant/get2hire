@@ -16,6 +16,5 @@ export class JobResultsComponent implements OnInit {
   ngOnInit() {
     this.keyword = this.route.snapshot.paramMap.get("keyword");
     this.location = this.route.snapshot.paramMap.get("location");
-    this.skill = this.route.snapshot.paramMap.get("skill");
   }
 }

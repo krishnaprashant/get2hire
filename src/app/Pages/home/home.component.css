@@ -28,14 +28,21 @@
     z-index: 99;
     border: 1px solid #e5e5e5;
   }
+  #location {
+    width: 100% !important;
+  }
 }
-
+@media (max-width: 767px) {
+  #location {
+    width: 100% !important;
+  }
+}
 #location {
-  position: absolute;
-  border: 0px;
-  margin-top: 10px;
-  font-size: 13px;
-  color: #5d606b;
+  width: 364px;
+  border-radius: 0;
+  position: initial;
+  height: 60px;
+  margin-top: 0px;
 }
 
 .background-black-blur {
@@ -44,7 +51,10 @@
   opacity: 0.6;
 }
 .background-img {
-  height: 872px;
-  background: url("/assets/images/resource/mslider2.jpg") no-repeat;
+  background: url(/assets/images/resource/bg-1.jpg) no-repeat;
   background-size: cover;
+  background-position: center;
+}
+.auto-font {
+  font-family: auto !important;
 }

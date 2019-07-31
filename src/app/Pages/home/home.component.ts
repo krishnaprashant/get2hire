@@ -28,8 +28,6 @@ export class HomeComponent implements OnInit {
     let keyword = (<HTMLInputElement>document.getElementById("keyword")).value;
     let location = (<HTMLInputElement>document.getElementById("location"))
       .value;
-    let skill = (<HTMLInputElement>document.getElementById("skills")).value;
-    window.location.href =
-      "/job-results/" + keyword + "/" + location + "/" + skill;
+    window.location.href = "/job-results/" + keyword + "/" + location;
   }
 }

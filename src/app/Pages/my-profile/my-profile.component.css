@@ -1,0 +1,13 @@
+.profile-circle {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.bottom-20 {
+  margin-bottom: 20px;
+}
+.top-30 {
+  top: 30px;
+}
+.circle {
+  border-radius: 50%;
+}

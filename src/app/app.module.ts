@@ -17,6 +17,13 @@ import { ApplicantDashboardComponent } from "./Pages/applicant-dashboard/applica
 import { RegisterEmployerComponent } from './Pages/register-employer/register-employer.component';
 import { TestComponent } from './Test/test/test.component';
 import { JobResultsComponent } from './Pages/job-results/job-results.component';
+import { PostJobComponent } from './Pages/post-job/post-job.component';
+import { MyProfileComponent } from './Pages/my-profile/my-profile.component';
+import { ShortlistedJobsComponent } from './Pages/shortlisted-jobs/shortlisted-jobs.component';
+import { AsideComponent } from './Components/aside/aside.component';
+import { AppliedJobsComponent } from './Pages/applied-jobs/applied-jobs.component';
+import { MyResumeComponent } from './Pages/my-resume/my-resume.component';
+import { ChangePasswordComponent } from './Pages/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +39,14 @@ import { JobResultsComponent } from './Pages/job-results/job-results.component';
     ApplicantDashboardComponent,
     RegisterEmployerComponent,
     TestComponent,
-    JobResultsComponent
+    JobResultsComponent,
+    PostJobComponent,
+    MyProfileComponent,
+    ShortlistedJobsComponent,
+    AsideComponent,
+    AppliedJobsComponent,
+    MyResumeComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

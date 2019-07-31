@@ -112,24 +112,11 @@ var keywords = [
   "JAVA Full stack Developer"
 ];
 
-var skills = [
-  "PHP",
-  "JAVA",
-  "C#",
-  "Android",
-  ".Net",
-  "ASP.Net",
-  ".Net MVC",
-  "Codeigniter",
-  "Laravel"
-];
-
 /*initiate the autocomplete function on the "myInput" element, and pass along the keywords array as possible autocomplete values:*/
 
 $(document).ready(function() {
   var path = window.location.pathname;
   if (path === "/") {
     autocomplete(document.getElementById("keyword"), keywords);
-    autocomplete(document.getElementById("skills"), skills);
   }
 });

@@ -38,10 +38,15 @@
               "src/assets/js/script.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/wow.min.js",
-              "src/assets/js/slick.min.js",
               "src/assets/js/parallax.js",
               "src/assets/js/select-chosen.js",
               "src/assets/js/counter.js",
+              "src/assets/js/circle-progress.min.js",
+              "src/assets/js/isotop.js",
+              "src/assets/js/bootstrap-datepicker.js",
+              "src/assets/js/tag.js",
+              "src/assets/js/select-chosen.js",
+              "src/assets/js/rslider.js",
               "src/assets/js/prashant-autocomplete.js"
             ]
           },

@@ -3703,7 +3703,7 @@ tbody.collapse.show {
 .custom-select {
   display: inline-block;
   width: 100%;
-  height: calc(2.25rem + 2px);
+  height: calc(2.25rem + 19px);
   padding: 0.375rem 1.75rem 0.375rem 0.75rem;
   line-height: 1.5;
   color: #495057;
@@ -3715,6 +3715,8 @@ tbody.collapse.show {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  border: solid 2px #e8ecec;
+  border-radius: 7px;
 }
 
 .custom-select:focus {
