@@ -12,23 +12,56 @@ import { ShortlistedJobsComponent } from "./Pages/shortlisted-jobs/shortlisted-j
 import { AppliedJobsComponent } from "./Pages/applied-jobs/applied-jobs.component";
 import { MyResumeComponent } from "./Pages/my-resume/my-resume.component";
 import { ChangePasswordComponent } from "./Pages/change-password/change-password.component";
+import { EmployerDashboardComponent } from "./Pages/employer-dashboard/employer-dashboard.component";
+import { EmployerResumeComponent } from "./Pages/employer-resume/employer-resume.component";
+import { AssessmentComponent } from "./Pages/assessment/assessment.component";
+import { AddAssessmentComponent } from "./Pages/add-assessment/add-assessment.component";
+import { AuthGuard } from "./auth.guard";
+import { AuthEmpGuard } from "./auth-emp.guard";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "register", component: RegisterComponent },
-  { path: "applicant-dashboard", component: ApplicantDashboardComponent },
+  {
+    path: "applicant-dashboard",
+    canActivate: [AuthGuard],
+    component: ApplicantDashboardComponent
+  },
   { path: "register-employer", component: RegisterEmployerComponent },
-  { path: "my-profile", component: MyProfileComponent },
   {
     path: "job-results/:keyword/:location",
     component: JobResultsComponent
   },
+  {
+    path: "shortlisted-jobs",
+    canActivate: [AuthGuard],
+    component: ShortlistedJobsComponent
+  },
+  {
+    path: "applied-jobs",
+    canActivate: [AuthGuard],
+    component: AppliedJobsComponent
+  },
+  {
+    path: "my-resume",
+    canActivate: [AuthGuard],
+    component: MyResumeComponent
+  },
+  {
+    path: "change-password",
+    canActivate: [AuthGuard],
+    component: ChangePasswordComponent
+  },
+  { path: "test", component: TestComponent },
   { path: "post-job", component: PostJobComponent },
-  { path: "shortlisted-jobs", component: ShortlistedJobsComponent },
-  { path: "applied-jobs", component: AppliedJobsComponent },
-  { path: "my-resume", component: MyResumeComponent },
-  { path: "change-password", component: ChangePasswordComponent },
-  { path: "test", component: TestComponent }
+  {
+    path: "employer-dashboard",
+    canActivate: [AuthEmpGuard],
+    component: EmployerDashboardComponent
+  },
+  { path: "employer-resume", component: EmployerResumeComponent },
+  { path: "add-assessment", component: AddAssessmentComponent },
+  { path: "assessment", component: AssessmentComponent }
 ];
 
 @NgModule({

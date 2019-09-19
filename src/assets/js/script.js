@@ -355,7 +355,7 @@ $(document).ready(function() {
             '\');" class="tagRemove">x</span></li>'
         );
       $("#languages").val($("#languages").val() + t[0] + ",");
-      $(".multi-text").val("");
+      $(".multi-text").val("#delthistext");
     }
   });
 });
@@ -409,3 +409,40 @@ $(document).ready(function() {
     $("html").removeClass("no-scroll");
   });
 });
+
+function timeAgo(datetime) {
+  var diff = Math.abs(new Date() - new Date(datetime.replace(/-/g, "/")));
+  var min = diff / (1000 * 60);
+  var hour = diff / (1000 * 60 * 60);
+  var day = diff / (1000 * 60 * 60 * 24);
+  var week = diff / (1000 * 60 * 60 * 24 * 7);
+  var month = diff / (1000 * 60 * 60 * 24 * 30);
+  var year = diff / (1000 * 60 * 60 * 24 * 365);
+  if (min < 1) {
+    return "just now";
+  } else if (min < 2) {
+    return "a min ago";
+  } else if (min > 2 && min < 60) {
+    return parseInt(min) + " minutes ago";
+  } else if (hour < 2) {
+    return "an hour ago";
+  } else if (hour > 2 && hour < 24) {
+    return parseInt(hour) + " hours ago";
+  } else if (day < 2) {
+    return "a day ago";
+  } else if (day > 2 && day < 7) {
+    return parseInt(day) + " days ago";
+  } else if (week < 2) {
+    return "a week ago";
+  } else if (week > 2 && week < 4) {
+    return parseInt(week) + " weeks ago";
+  } else if (month < 2) {
+    return "a month ago";
+  } else if (month > 2 && month < 12) {
+    return parseInt(month) + " months ago";
+  } else if (year < 2) {
+    return "a year ago";
+  } else if (year > 2) {
+    return parseInt(year) + " years ago";
+  }
+}

@@ -1,0 +1,105 @@
+<section class="add-question">
+    <div class="block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 column">
+                    <div class="contact-form">
+                        <form [formGroup]="AssessmentForm" (ngSubmit)="onSubmit($event)" novalidate>
+                            <h4 class="text-green">{{responseData}}</h4>
+                            <div class="row">
+                                <span class="pf-title">Question Name</span>
+                                <div class="pf-field col-lg-10">
+                                    <input type="text" [ngClass]="{
+                          'feild-error': isSubmitted && f.question.errors?.required
+                        }" placeholder="Question Name" formControlName="question" required />
+                                    <div class="error" *ngIf="isSubmitted && f.question.errors?.required">
+                                        <small>Please fillup the Question Name</small>
+                                    </div>
+                                </div>
+                                <div class="pf-field col-lg-5">
+                                    <span class="pf-title">Choice 1</span>
+                                    <input type="text" [ngClass]="{
+                          'feild-error': isSubmitted && f.choice1.errors?.required
+                        }" placeholder="Choice 1" formControlName="choice1" required />
+                                    <div class="error" *ngIf="isSubmitted && f.choice1.errors?.required">
+                                        <small>Please fillup the Choice 1</small>
+                                    </div>
+                                </div>
+                                <div class="pf-field col-lg-5">
+                                    <span class="pf-title">Choice 2</span>
+                                    <input type="text" [ngClass]="{
+                          'feild-error': isSubmitted && f.choice2.errors?.required
+                        }" placeholder="Choice 2" formControlName="choice2" required />
+                                    <div class="error" *ngIf="isSubmitted && f.choice2.errors?.required">
+                                        <small>Please fillup the Choice 2</small>
+                                    </div>
+                                </div>
+                                <div class="pf-field col-lg-5">
+                                    <span class="pf-title">Choice 3</span>
+                                    <input type="text" [ngClass]="{
+                          'feild-error': isSubmitted && f.choice3.errors?.required
+                        }" placeholder="Choice 3" formControlName="choice3" required />
+                                    <div class="error" *ngIf="isSubmitted && f.choice3.errors?.required">
+                                        <small>Please fillup the Choice 3</small>
+                                    </div>
+                                </div>
+                                <div class="pf-field col-lg-5">
+                                    <span class="pf-title">Choice 4</span>
+                                    <input type="text" [ngClass]="{
+                          'feild-error': isSubmitted && f.choice4.errors?.required
+                        }" placeholder="Choice 4" formControlName="choice4" required />
+                                    <div class="error" *ngIf="isSubmitted && f.choice4.errors?.required">
+                                        <small>Please fillup the Choice 4</small>
+                                    </div>
+                                </div>
+                                <span class="pf-title">Answer</span>
+                                <div class="pf-field col-lg-5">
+                                    <input type="text" [ngClass]="{
+                          'feild-error': isSubmitted && f.answer.errors?.required
+                        }" placeholder="Answer" formControlName="answer" required />
+                                    <div class="error" *ngIf="isSubmitted && f.answer.errors?.required">
+                                        <small>Please fillup the Answer</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <button class="blue-button" [disabled]="processing"
+                                        type="submit">{{status}}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="add-question">
+    <h3>Your Assessment </h3>
+    <h4 class="text-green">{{DeletedResponseData}}</h4>
+    <div>
+        <span *ngFor="let a of AssessmentsList">
+            <div>
+                <br>
+                <h4><strong>{{a.question}}</strong></h4>
+                <br>
+            </div>
+            <div>
+                Answer: <strong>{{a.answer}}</strong>
+                <br><br>
+            </div>
+            <div class="row">
+                <div class="col-md-2">A. {{a.choice_1}}</div>
+                <div class="col-md-2">B. {{a.choice_2}}</div>
+                <div class="col-md-2">C. {{a.choice_3}}</div>
+                <div class="col-md-2">D. {{a.choice_4}}</div>
+                <div class="col-md-2"><button class="red-button" (click)="deleteQustion(a.id)">Delete</button></div>
+            </div>
+
+        </span>
+    </div>
+</section>
+
+
+<!-- You have selected <b>{{SelectedAssessment}}</b> -->

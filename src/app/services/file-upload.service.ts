@@ -12,7 +12,7 @@ import { throwError } from "rxjs";
   providedIn: "root"
 })
 export class FileUploadService {
-  apiUrl = "http://localhost/get2hire_laravel/api/upload-pic";
+  apiUrl = "http://api.get2hire.com/api/upload-pic";
 
   constructor(private httpClient: HttpClient) {}
 

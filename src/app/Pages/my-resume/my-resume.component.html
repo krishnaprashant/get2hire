@@ -6,7 +6,7 @@
 				<div class="col-lg-3 column border-right top-30">
 					<app-aside></app-aside>
 					<div class="widget">
-						<div class="skill-perc">
+						<!-- <div class="skill-perc">
 							<h3>Skills Percentage</h3>
 							<p>
 								Put value for "Cover Image" field to increase your skill up to "15%"
@@ -15,168 +15,157 @@
 								<span>85%</span>
 								<div class="second circle" data-size="155" data-thickness="60"></div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="col-lg-9 column">
 					<div class="padding-left">
 						<div class="manage-jobs-sec">
 							<div class="border-title">
-								<h3>Candidates Dashboard</h3><a href="#" title=""><i class="la la-plus"></i> Add
+								<h3>Candidates Dashboard</h3>
+							</div>
+							<div *ngIf="!PersonalDetails?.length > 0">
+								<h5 class="text-center">
+									<p>No Personal Details are provided</p>
+								</h5>
+							</div>
+							<div class="edu-history-sec">
+								<span *ngFor="let p of PersonalDetails">
+									<div class="edu-history">
+										<i class="la la-user"></i>
+										<div class="edu-hisinfo">
+											<h3>Personal</h3>
+										</div>
+									</div>
+									<div class="col-lg-12 col-md-12 row">
+
+										<div class="col-lg-6 col-md-6 profile-details">
+											<p><strong>Name: </strong>
+												{{p.name}}</p>
+											<p><strong>Email: </strong>
+												{{p.email}}</p>
+											<p><strong>Phone: </strong>
+												{{p.phone}}</p>
+										</div>
+										<div class="col-lg-6 col-md-6">
+											<img class="my-profile-circle"
+												src="http://api.get2hire.com/control/public/images/{{p.profile}}"
+												alt="" />
+										</div>
+									</div>
+
+								</span>
+							</div>
+							<div class="border-title">
+								<h3>Education Details</h3>
+								<a data-toggle="modal" data-target="#myModal" title=""><i class="la la-plus"></i> Add
 									Education</a>
 							</div>
+							<div *ngIf="!EducationDetails?.length > 0">
+								<h5 class="text-center">
+									<p>No education details are provided</p>
+								</h5>
+							</div>
 							<div class="edu-history-sec">
-								<div class="edu-history">
-									<i class="la la-graduation-cap"></i>
-									<div class="edu-hisinfo">
-										<h3>University</h3>
-										<i>2008 - 2012</i>
-										<span>Middle East Technical University <i>Computer Science</i></span>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
-											tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+								<span *ngFor="let e of EducationDetails">
+									<div class="edu-history">
+										<i class="la la-graduation-cap"></i>
+										<div class="edu-hisinfo">
+											<h3>{{e.institute}}</h3>
+											<i>{{e.from_date}} - {{e.to_date}}</i>
+											<span>{{e.board}}<i>{{e.course}}</i></span>
+										</div>
+										<ul class="action_job">
+											<li><span>Delete</span><a (click)="DeleteEducationDetails(e.id)" title=""><i
+														class="la la-trash-o"></i></a>
+											</li>
+										</ul>
 									</div>
-									<ul class="action_job">
-										<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-										<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a>
-										</li>
-									</ul>
-								</div>
-								<div class="edu-history">
-									<i class="la la-graduation-cap"></i>
-									<div class="edu-hisinfo">
-										<h3>High School</h3>
-										<i>2008 - 2012</i>
-										<span>Tomms College <i>Bachlors in Fine Arts</i></span>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
-											tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-									</div>
-									<ul class="action_job">
-										<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-										<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a>
-										</li>
-									</ul>
-								</div>
+								</span>
 							</div>
 							<div class="border-title">
-								<h3>Work Experience</h3><a href="#" title=""><i class="la la-plus"></i> Add
+								<h3>Work Experience</h3>
+								<a data-toggle="modal" data-target="#myModalAddExperience" title=""><i
+										class="la la-plus"></i> Add
 									Experience</a>
 							</div>
+							<div *ngIf="!WorkExperienceDetails?.length > 0">
+								<h5 class="text-center">
+									<p>No work exerience details are provided</p>
+								</h5>
+							</div>
 							<div class="edu-history-sec">
-								<div class="edu-history style2">
-									<i></i>
-									<div class="edu-hisinfo">
-										<h3>Web Designer <span>Inwave Studio</span></h3>
-										<i>2008 - 2012</i>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
-											tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+								<span *ngFor="let w of WorkExperienceDetails">
+									<div class="edu-history style2">
+										<i></i>
+										<div class="edu-hisinfo">
+											<h3>{{w.designation}} <span>{{w.company}}</span></h3>
+											<i>{{w.from_date}} - {{w.to_date}}</i>
+											<p>{{w.description}}</p>
+										</div>
+										<ul class="action_job">
+											<li><span>Delete</span><a (click)="DeleteExperienceDetails(w.id)"
+													title=""><i class="la la-trash-o"></i></a>
+											</li>
+										</ul>
 									</div>
-									<ul class="action_job">
-										<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-										<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a>
-										</li>
-									</ul>
-								</div>
-								<div class="edu-history style2">
-									<i></i>
-									<div class="edu-hisinfo">
-										<h3>CEO Founder <span>Inwave Studio</span></h3>
-										<i>2008 - 2012</i>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
-											tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-									</div>
-									<ul class="action_job">
-										<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-										<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a>
-										</li>
-									</ul>
-								</div>
+								</span>
 							</div>
 							<div class="border-title">
-								<h3>Professional Skills</h3><a href="#" title=""><i class="la la-plus"></i> Add
+								<h3>Professional Skills</h3>
+								<a data-toggle="modal" data-target="#myAddSkillsModal" title=""><i
+										class="la la-plus"></i> Add
 									Skills</a>
+							</div>
+							<div *ngIf="!Skills?.length > 0">
+								<h5 class="text-center">
+									<p>No skills are mentioned</p>
+								</h5>
 							</div>
 							<div class="progress-sec">
-								<div class="progress-sec with-edit">
-									<span>Adobe Photoshop</span>
-									<div class="progressbar">
-										<div class="progress" style="width: 80%;"><span>80%</span></div>
+								<span *ngFor="let s of Skills">
+									<div class="progress-sec with-edit">
+										<span>{{s.skill}}</span>
+										<div class="progressbar">
+											<div class="progress" [style.width.%]="s.percent">
+												<span>{{s.percent}}%</span>
+											</div>
+										</div>
+										<ul class="action_job">
+											<li><span>Delete</span><a (click)="DeleteSkills(s.id)" title=""><i
+														class="la la-trash-o"></i></a>
+											</li>
+										</ul>
 									</div>
-									<ul class="action_job">
-										<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-										<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a>
-										</li>
-									</ul>
-								</div>
-								<div class="progress-sec with-edit">
-									<span>Production In Html</span>
-									<div class="progressbar">
-										<div class="progress" style="width: 60%;"><span>60%</span></div>
-									</div>
-									<ul class="action_job">
-										<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-										<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a>
-										</li>
-									</ul>
-								</div>
-								<div class="progress-sec with-edit">
-									<span>Graphic Design</span>
-									<div class="progressbar">
-										<div class="progress" style="width: 75%;"><span>75%</span></div>
-									</div>
-									<ul class="action_job">
-										<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-										<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a>
-										</li>
-									</ul>
-								</div>
+								</span>
 							</div>
 							<div class="border-title">
-								<h3>Professional Skills</h3><a href="#" title=""><i class="la la-plus"></i> Add
-									Skills</a>
+								<h3>Projects</h3>
+								<a data-toggle="modal" data-target="#myProjectModal" title=""><i class="la la-plus"></i>
+									Add
+									Projects</a>
+							</div>
+							<div *ngIf="!ProjectDetails?.length > 0">
+								<h5 class="text-center">
+									<p>No project details are provided</p>
+								</h5>
 							</div>
 							<div class="edu-history-sec">
-								<div class="edu-history style2">
-									<i></i>
-									<div class="edu-hisinfo">
-										<h3>Perfect Attendance Programs</h3>
-										<i>2008 - 2012</i>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
-											tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+								<span *ngFor="let p of ProjectDetails">
+									<div class="edu-history style2">
+										<i></i>
+										<div class="edu-hisinfo">
+											<h3>{{p.title}} <span>{{p.company}}</span></h3>
+											<i>{{p.from_date}} - {{p.to_date}}</i>
+											<p>{{p.description}}</p>
+										</div>
+										<ul class="action_job">
+											<li><span>Delete</span><a (click)="DeleteProjectDetails(p.id)" title=""><i
+														class="la la-trash-o"></i></a>
+											</li>
+										</ul>
 									</div>
-									<ul class="action_job">
-										<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-										<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a>
-										</li>
-									</ul>
-								</div>
-								<div class="edu-history style2">
-									<i></i>
-									<div class="edu-hisinfo">
-										<h3>Top Performer Recognition</h3>
-										<i>2008 - 2012</i>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
-											tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-									</div>
-									<ul class="action_job">
-										<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-										<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a>
-										</li>
-									</ul>
-								</div>
-								<div class="edu-history style2">
-									<i></i>
-									<div class="edu-hisinfo">
-										<h3>King LLC</h3>
-										<i>2008 - 2012</i>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum
-											tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-									</div>
-									<ul class="action_job">
-										<li><span>Edit</span><a href="#" title=""><i class="la la-pencil"></i></a></li>
-										<li><span>Delete</span><a href="#" title=""><i class="la la-trash-o"></i></a>
-										</li>
-									</ul>
-								</div>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -185,4 +174,13 @@
 		</div>
 	</div>
 </section>
+<div [ngClass]="{'show-loader': loader}" class="loader-background-2">
+	<h4 class="loader-message">{{loading_message}}</h4>
+	<div class="loader">
+	</div>
+</div>
+<app-add-education-modal></app-add-education-modal>
+<app-add-work-experience-modal></app-add-work-experience-modal>
+<app-add-skills-modal></app-add-skills-modal>
+<app-add-projects-modal></app-add-projects-modal>
 <app-footer></app-footer>

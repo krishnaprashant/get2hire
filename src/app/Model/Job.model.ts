@@ -6,7 +6,7 @@ export class JobPost {
   experience: string;
   salary: string;
   industry: string;
-  qualification: string;
+  qualification_details: string;
   requirements: string;
   city: string;
 }

@@ -21,14 +21,21 @@ function autocomplete(inp, arr) {
     /*append the DIV element as a child of the autocomplete container:*/
     this.parentNode.appendChild(a);
     /*for each item in the array...*/
-    for (i = 0; i < arr.length; i++) {
-      /*check if the item starts with the same letters as the text field value:*/
-      if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+    var patt = new RegExp(val, "i");
+    // console.clear();
+    for (i = 0; i <= arr.length; i++) {
+      if (patt.test(arr[i])) {
         /*create a DIV element for each matching element:*/
         b = document.createElement("DIV");
         /*make the matching letters bold:*/
-        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-        b.innerHTML += arr[i].substr(val.length);
+
+        var markup = arr[i];
+        var output = updateHaystack(markup, val);
+
+        // b.innerHTML = "<strong>" + new_string + "</strong>";
+
+        b.innerHTML += output;
+
         /*insert a input field that will hold the current array item's value:*/
         b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
         /*execute a function when someone clicks on the item value (DIV element):*/
@@ -36,7 +43,7 @@ function autocomplete(inp, arr) {
           /*insert the value for the autocomplete text field:*/
           inp.value = this.getElementsByTagName("input")[0].value;
           /*close the list of autocompleted values,
-                    (or any other open lists of autocompleted values:*/
+          (or any other open lists of autocompleted values:*/
           closeAllLists();
         });
         a.appendChild(b);
@@ -97,19 +104,26 @@ function autocomplete(inp, arr) {
     }
   }
 }
+function updateHaystack(input, needle) {
+  let myVariable = needle;
+  let myReg = new RegExp(myVariable, "i");
+  let myMatch = input.match(myReg);
+
+  return input.replace(new RegExp(needle, "i"), "<b>" + myMatch[0] + "</b>");
+}
 
 /*An array containing all the country names in the world:*/
 var keywords = [
-  ".Net Developer",
-  "ASP.Net Developer",
-  "ASP.Net MVC Developer",
-  "Java Developer",
-  "PHP Developer",
-  "Codeigniter Developer",
-  "Laravel Developer",
-  "Android Developer",
-  "PHP Full stack Developer",
-  "JAVA Full stack Developer"
+  ".Net",
+  "ASP.Net",
+  "ASP.Net MVC",
+  "Java",
+  "PHP",
+  "Codeigniter",
+  "Laravel",
+  "Android",
+  "PHP Full stack",
+  "JAVA Full stack"
 ];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the keywords array as possible autocomplete values:*/
@@ -118,5 +132,12 @@ $(document).ready(function() {
   var path = window.location.pathname;
   if (path === "/") {
     autocomplete(document.getElementById("keyword"), keywords);
+  }
+  if (path === "/my-resume") {
+    autocomplete(document.getElementById("keyword"), keywords);
+    autocomplete(document.getElementById("skills"), keywords);
+  }
+  if (path === "/post-job") {
+    autocomplete(document.getElementById("skills"), keywords);
   }
 });

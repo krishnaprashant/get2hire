@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: "root"
 })
 export class TestService {
-  apiUrl = "http://localhost/get2hire_laravel/api/register";
+  apiUrl = "http://api.get2hire.com/api/register";
 
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })

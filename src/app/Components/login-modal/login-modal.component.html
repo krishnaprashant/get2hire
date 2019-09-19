@@ -2,24 +2,35 @@
   <div class="account-popup margin-140">
     <span class="close-popup-x"><i class="la la-close"></i></span>
     <h3>User Login</h3>
+    <h5><strong class="error">{{response}}</strong></h5>
     <span>Click To Login With Demo User</span>
     <div class="select-user">
-      <span>Candidate</span>
-      <span>Employer</span>
+      <span (click)="SelectApplicant()">Candidate</span>
+      <span (click)="SelectEmployer()">Employer</span>
+      <div class="error" *ngIf="isSubmitted && isNotSelected">
+        <small>Required</small>
+      </div>
     </div>
-    <form>
+    <form [formGroup]="LoginForm" (ngSubmit)="onSubmit($event)" novalidate>
       <div class="cfield">
-        <input type="text" placeholder="Username" />
+        <input type="email" formControlName="email" placeholder="email" />
+        <div class="error" *ngIf="isSubmitted && f.email.errors?.required">
+          <small>Required</small>
+        </div>
+        <div class="error" *ngIf="isSubmitted && f.email.errors?.email">
+          <small>Email is invalid</small>
+        </div>
         <i class="la la-user"></i>
       </div>
       <div class="cfield">
-        <input type="password" placeholder="********" />
+        <input type="password" formControlName="password" placeholder="********" />
+        <div class="error" *ngIf="isSubmitted && f.password.errors?.required">
+          <small>Required</small>
+        </div>
         <i class="la la-key"></i>
       </div>
       <p class="remember-label">
-        <input type="checkbox" name="cb" id="cb1" /><label for="cb1"
-          >Remember me</label
-        >
+        <input type="checkbox" name="cb" id="cb1" /><label for="cb1">Remember me</label>
       </p>
       <a href="#" title="">Forgot Password?</a>
       <button type="submit">Login</button>

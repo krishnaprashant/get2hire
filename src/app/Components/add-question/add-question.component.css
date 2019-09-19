@@ -1,0 +1,30 @@
+.blue-button {
+  background: #0b1b46;
+  border: #0b1b46;
+  margin-top: 0px;
+}
+.blue-button:hover {
+  background: transparent;
+  border: 1px solid #0b1b46;
+  color: #0b1b46;
+}
+.red-button {
+  background: #b31d2b;
+  border: #b31d2b;
+  margin-top: 0px;
+}
+.red-button:hover {
+  background: transparent;
+  border: 1px solid #b31d2b;
+  color: #b31d2b;
+}
+.pf-title {
+  margin-left: 20px;
+}
+.error {
+  color: red;
+}
+.feild-error {
+  margin-bottom: 0 !important;
+  border-color: red !important;
+}

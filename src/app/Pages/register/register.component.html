@@ -27,7 +27,7 @@
   <div class="block remove-bottom">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12">          
+        <div class="col-lg-12">
           <div class="select-user">
             <span id="applicant_tab">Applicant</span>
             <span id="employer_tab">Employer</span>
@@ -35,188 +35,103 @@
           <div id="applicant_form">
             <div id="RegistrationForm" class="signup-popup-box static">
               <div class="account-popup account-popup-override">
-                <form
-                  [formGroup]="RegisterForm"
-                  novalidate
-                  (ngSubmit)="onSubmit(RegForm)"
-                  #RegForm="ngForm"
-                >
+                <h4><strong class="text-green">{{response}}</strong></h4>
+                <form [formGroup]="RegisterForm" novalidate (ngSubmit)="onSubmit(RegForm)" #RegForm="ngForm"
+                  [ngClass]="{'hidden': HaveRegistered}">
                   <!-- form starts -->
                   <div class="row">
                     <div class="col-md-4">
-                      <div
-                        class="cfield"
-                        [ngClass]="{
+                      <div class="cfield" [ngClass]="{
                           'feild-error': isSubmitted && f.name.errors?.required
-                        }"
-                      >
-                        <input
-                          type="text"
-                          placeholder="Name"
-                          formControlName="name"
-                          required
-                        />
+                        }">
+                        <input type="text" placeholder="Name" formControlName="name" required />
                         <i class="la la-user"></i>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.name.errors?.required"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.name.errors?.required">
                         <small>Required</small>
                       </div>
-                      <div
-                        class="cfield"
-                        [ngClass]="{
+                      <div class="cfield" [ngClass]="{
                           'feild-error':
                             (isSubmitted && f.email.errors?.required) ||
                             f.email.errors?.email
-                        }"
-                      >
-                        <input
-                          type="text"
-                          placeholder="Email"
-                          formControlName="email"
-                        />
+                        }">
+                        <input type="text" placeholder="Email" formControlName="email" />
                         <i class="la la-envelope-o"></i>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.email.errors?.required"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.email.errors?.required">
                         <small>Required</small>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.email.errors?.email"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.email.errors?.email">
                         <small>Email is invalid</small>
                       </div>
-                      <div
-                        class="cfield"
-                        [ngClass]="{
+                      <div class="cfield" [ngClass]="{
                           'feild-error':
                             (isSubmitted && f.phone.errors?.required) ||
                             f.phone.errors?.minlength ||
                             f.phone.errors?.pattern
-                        }"
-                      >
-                        <input
-                          type="text"
-                          placeholder="Phone Number"
-                          formControlName="phone"
-                        />
+                        }">
+                        <input type="text" placeholder="Phone Number" formControlName="phone" />
                         <i class="la la-phone"></i>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.phone.errors?.required"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.phone.errors?.required">
                         <small>Required</small>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="
+                      <div class="error" *ngIf="
                           (isSubmitted && f.phone.errors?.minlength) ||
                           f.phone.errors?.pattern
-                        "
-                      >
+                        ">
                         <small>Phone number is not valid</small>
                       </div>
-                      <div
-                        class="cfield"
-                        [ngClass]="{
+                      <div class="cfield" [ngClass]="{
                           'feild-error':
                             (isSubmitted && f.password.errors?.required) ||
                             f.password.errors?.minlength ||
                             f.password.errors?.pattern
-                        }"
-                      >
-                        <input
-                          type="password"
-                          placeholder="********"
-                          formControlName="password"
-                        />
+                        }">
+                        <input type="password" placeholder="********" formControlName="password" />
                         <i class="la la-key"></i>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.password.errors?.required"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.password.errors?.required">
                         <small>Required</small>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.password.errors?.pattern"
-                      >
-                        <small
-                          >1 Capital Letter and Alphanumeric Password is
-                          expected</small
-                        >
+                      <div class="error" *ngIf="isSubmitted && f.password.errors?.pattern">
+                        <small>1 Capital Letter and Alphanumeric Password is
+                          expected</small>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.password.errors?.minlength"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.password.errors?.minlength">
                         <small>Min 8 charecters</small>
                       </div>
-                      <div
-                        class="cfield"
-                        [ngClass]="{
+                      <div class="cfield" [ngClass]="{
                           'feild-error':
                             isSubmitted && f.prefferedLocation.errors?.required
-                        }"
-                      >
-                        <input
-                          type="text"
-                          placeholder="Preferred job location"
-                          formControlName="prefferedLocation"
-                        />
+                        }">
+                        <input type="text" placeholder="Preferred job location" formControlName="prefferedLocation" />
                         <i class="la la-map-marker"></i>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="
+                      <div class="error" *ngIf="
                           isSubmitted && f.prefferedLocation.errors?.required
-                        "
-                      >
+                        ">
                         <small>Required</small>
                       </div>
                     </div>
                     <div class="col-md-4">
-                      <div
-                        class="cfield"
-                        [ngClass]="{
+                      <div class="cfield" [ngClass]="{
                           'feild-error':
                             isSubmitted && f.expertise.errors?.required
-                        }"
-                      >
-                        <input
-                          type="text"
-                          placeholder="Domain of Expertise"
-                          formControlName="expertise"
-                        />
+                        }">
+                        <input type="text" placeholder="Domain of Expertise" formControlName="expertise" />
                         <i class=""></i>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.expertise.errors?.required"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.expertise.errors?.required">
                         <small>Required</small>
                       </div>
-                      <div
-                        class="dropdown-field"
-                        [ngClass]="{
+                      <div class="dropdown-field">
+                        <select class="browser-default custom-select" formControlName="experience" id="experience"
+                          [ngClass]="{
                           'feild-error':
                             isSubmitted && f.experience.errors?.required
-                        }"
-                      >
-                        <select
-                          class="browser-default custom-select"
-                          formControlName="experience"
-                        >
-                          <option disabled [selected]="true"
-                            >Experience or Fresher</option
-                          >
+                        }">
+                          <option disabled [selected]="true">Experience or Fresher</option>
                           <option>Fresher</option>
                           <option>1 year</option>
                           <option>2 years</option>
@@ -228,140 +143,74 @@
                           <option>Above 10 years</option>
                         </select>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.experience.errors?.required"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.experience.errors?.required">
                         <small>Required</small>
                       </div>
-                      <div
-                        class="cfield"
-                        [ngClass]="{
+                      <div class="cfield" [ngClass]="{
                           'feild-error':
                             isSubmitted && f.percentage.errors?.required
-                        }"
-                      >
-                        <input
-                          type="text"
-                          placeholder="Percentage (aggregate)"
-                          formControlName="percentage"
-                        />
+                        }">
+                        <input type="text" placeholder="Percentage (aggregate)" formControlName="percentage" />
                         <i class=""></i>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.percentage.errors?.required"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.percentage.errors?.required">
                         <small>Required</small>
                       </div>
-                      <div
-                        class="cfield"
-                        [ngClass]="{
+                      <div class="cfield" [ngClass]="{
                           'feild-error':
                             isSubmitted && f.qualification.errors?.required
-                        }"
-                      >
-                        <input
-                          type="text"
-                          placeholder="Highest Qulafication"
-                          formControlName="qualification"
-                        />
+                        }">
+                        <input type="text" placeholder="Highest Qulafication" formControlName="qualification" />
                         <i class=""></i>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.qualification.errors?.required"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.qualification.errors?.required">
                         <small>Required</small>
                       </div>
-                      <div
-                        class="cfield"
-                        [ngClass]="{
+                      <div class="cfield" [ngClass]="{
                           'feild-error':
                             isSubmitted && f.branch.errors?.required
-                        }"
-                      >
-                        <input
-                          type="text"
-                          placeholder="Branch or Domain"
-                          formControlName="branch"
-                        />
+                        }">
+                        <input type="text" placeholder="Branch or Domain" formControlName="branch" />
                         <i class=""></i>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.branch.errors?.required"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.branch.errors?.required">
                         <small>Required</small>
                       </div>
                     </div>
                     <div class="col-md-4">
-                      <div
-                        class="cfield"
-                        [ngClass]="{
+                      <div class="cfield" [ngClass]="{
                           'feild-error':
                             isSubmitted && f.passout.errors?.required
-                        }"
-                      >
-                        <input
-                          type="text"
-                          placeholder="Year of Pass Out"
-                          formControlName="passout"
-                        />
+                        }">
+                        <input type="text" placeholder="Year of Pass Out" formControlName="passout" />
                         <i class=""></i>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.passout.errors?.required"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.passout.errors?.required">
                         <small>Required</small>
                       </div>
-                      <div
-                        class="dropdown-field"
-                        [ngClass]="{
+                      <div class="dropdown-field">
+                        <select class="browser-default custom-select" formControlName="gender" [ngClass]="{
                           'feild-error':
                             isSubmitted && f.gender.errors?.required
-                        }"
-                      >
-                        <select
-                          class="browser-default custom-select"
-                          formControlName="gender"
-                        >
+                        }">
                           <option disabled [selected]="true">Gender</option>
                           <option>Male</option>
                           <option>Female</option>
                         </select>
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.gender.errors?.required"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.gender.errors?.required">
                         <small>Required</small>
                       </div>
-                      <div
-                        class="cfield"
-                        [ngClass]="{
+                      <div class="cfield" [ngClass]="{
                           'feild-error':
                             isSubmitted && f.profilePic.errors?.required
-                        }"
-                      >
-                        <span class="input-group-addon" id="file_upload"
-                          ><i class="glyphicon glyphicon-upload"></i
-                        ></span>
-                        <input
-                          type="file"
-                          id="file_nm"
-                          class="form-control upload"
-                          placeholder=""
-                          aria-describedby="file_upload"
-                          name="profilePic"
-                          (change)="onSelectedFile($event)"
-                        />
+                        }">
+                        <span class="input-group-addon" id="file_upload"><i
+                            class="glyphicon glyphicon-upload"></i></span>
+                        <input type="file" id="file_nm" class="form-control upload" placeholder="Logo"
+                          aria-describedby="file_upload" name="profilePic" (change)="onSelectedFile($event)" />
                       </div>
-                      <div
-                        class="error"
-                        *ngIf="isSubmitted && f.profilePic.errors?.required"
-                      >
+                      <div class="error" *ngIf="isSubmitted && f.profilePic.errors?.required">
                         <small>Required</small>
                       </div>
                     </div>
@@ -384,8 +233,7 @@
             <a class="fb-login" href="#" title="">
               <i class="fa fa-facebook"></i>
             </a>
-            <a class="tw-login" href="#" title=""
-              ><i class="fa fa-twitter"></i>
+            <a class="tw-login" href="#" title=""><i class="fa fa-twitter"></i>
             </a>
           </div>
         </div>

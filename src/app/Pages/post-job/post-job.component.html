@@ -4,52 +4,69 @@
     <div class="block no-padding">
         <div class="container">
             <div class="row no-gape">
-
-                <div class="col-lg-12 column">
+                <aside class="col-lg-3 column border-right">
+                    <div class="widget">
+                        <div class="tree_widget-sec">
+                            <ul>
+                                <li><a href="/employer-dashboard" title=""><i class="la la-briefcase"></i>Employer
+                                        Dashboard</a></li>
+                                <li><a href="/employer-resume" title=""><i class="la la-paper-plane"></i>Resumes</a>
+                                </li>
+                                <li><a href="post-job" title=""><i class="la la-file-text"></i>Post a New
+                                        Job</a></li>
+                                <li><a href="" title=""><i class="la la-lock"></i>Change
+                                        Password</a></li>
+                                <li><a href="#" title=""><i class="la la-unlink"></i>Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+                <div class="col-lg-9 column">
                     <div class="padding-left">
 
                         <div class="profile-form-edit">
-                            <form [formGroup]="PostJob" novalidate (ngSubmit)="onSubmit(PostjobForm)"
-                                #PostjobForm="ngForm">
+                            <h4 class="response">{{postJobResponse}}</h4>
+                            <form [formGroup]="PostJobForm" autocomplete="off" [ngClass]="{'hidden': HaveRegistered}"
+                                (ngSubmit)="onSubmit($event)" novalidate>
                                 <!-- form starts -->
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <span class="pf-title">Job Title</span>
                                         <div class="pf-field">
                                             <input type="text" [ngClass]="{
-                                            'feild-error': isSubmitted && f.title.errors?.required
-                                          }" placeholder="Designer" formControlName="title"
-                                                required />
+                                            'feild-error': isSubmitted && f.jobtitle.errors?.required
+                                          }" placeholder="Job Title" formControlName="jobtitle" required />
                                         </div>
-                                        <div class="error" *ngIf="isSubmitted && f.title.errors?.required">
+                                        <div class="error" *ngIf="isSubmitted && f.jobtitle.errors?.required">
+                                            <small>Required</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="pf-title">Industry</span>
+                                        <div class="dropdown-field">
+                                            <select data-placeholder="Please Select Industry"
+                                                class="browser-default custom-select" formControlName="industry"
+                                                *ngFor="let a of allResponse" [ngClass]="{
+                                                                                'feild-error': isSubmitted && f.industry.errors?.required
+                                                                              }">
+                                                <option disabled [selected]="true">Select Industry</option>
+                                                <option>{{a.company_name}}</option>
+                                                <option>{{a.sourcing_for}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="error" *ngIf="isSubmitted && f.industry.errors?.required">
                                             <small>Required</small>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
-                                        <span class="pf-title">Job Type</span>
-                                        <div class="dropdown-field" >
-                                            <select [ngClass]="{
-                                            'feild-error': isSubmitted && f.jobtype.errors?.required
-                                          }" class="browser-default custom-select" formControlName="jobtype">
-                                                <option disabled [selected]="true">Job Type</option>
-                                                <option>Web Development</option>
-                                                <option>Web Designing</option>
-                                                <option>Art & Culture</option>
-                                                <option>Reading & Writing</option>
-                                            </select>
-                                        </div>
-                                        <div class="error" *ngIf="isSubmitted && f.jobtype.errors?.required">
-                                            <small>Required</small>
-                                        </div>
-                                    </div>
+
                                     <div class="col-lg-12">
                                         <span class="pf-title">Description</span>
-                                        <div class="pf-field" >
-                                            <input type="text" [ngClass]="{
+                                        <div class="pf-field">
+                                            <textarea type="text" [ngClass]="{
                                             'feild-error': isSubmitted && f.description.errors?.required
-                                          }" placeholder="Job Description"
-                                                formControlName="description" required />
+                                          }" placeholder="Job Description" formControlName="description"
+                                                required></textarea>
                                         </div>
                                         <div class="error" *ngIf="isSubmitted && f.description.errors?.required">
                                             <small>Required</small>
@@ -57,28 +74,12 @@
                                     </div>
 
 
-                                    <div class="col-lg-6">
-                                        <span class="pf-title">Category</span>
-                                        <div class="dropdown-field" >
-                                            <select data-placeholder="" [ngClass]="{
-                                            'feild-error': isSubmitted && f.categories.errors?.required
-                                          }" class="browser-default custom-select"
-                                                formControlName="categories">
-                                                <option disabled [selected]="true">Please Select a Category</option>
-                                                <option>Web Designing</option>
-                                                <option>Art & Culture</option>
-                                                <option>Reading & Writing</option>
-                                            </select>
-                                        </div>
-                                        <div class="error" *ngIf="isSubmitted && f.categories.errors?.required">
-                                            <small>Required</small>
-                                        </div>
-                                    </div>
+
 
 
                                     <div class="col-lg-6">
                                         <span class="pf-title">Experience</span>
-                                        <div class="dropdown-field" >
+                                        <div class="dropdown-field">
                                             <select [ngClass]="{
                                             'feild-error': isSubmitted && f.experience.errors?.required
                                           }" data-placeholder="Please Select Specialism"
@@ -102,11 +103,11 @@
 
                                     <div class="col-lg-6">
                                         <span class="pf-title">Offerd Salary</span>
-                                        <div class="dropdown-field" >
+                                        <div class="dropdown-field">
                                             <select data-placeholder="Please Select Specialism" [ngClass]="{
                                             'feild-error': isSubmitted && f.salary.errors?.required
-                                          }"
-                                                class="browser-default custom-select" formControlName="salary">
+                                          }" class="browser-default custom-select" formControlName="salary">
+                                                <option [selected]="true" disabled>Select Salary</option>
                                                 <option>10k - 12k</option>
                                                 <option>12k - 15k </option>
                                                 <option>15k - 19k</option>
@@ -118,30 +119,13 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        <span class="pf-title">Industry</span>
-                                        <div class="dropdown-field" >
-                                            <select data-placeholder="Please Select Industry"
-                                                class="browser-default custom-select" [ngClass]="{
-                                            'feild-error': isSubmitted && f.industry.errors?.required
-                                          }" formControlName="industry">
-                                                <option disabled [selected]="true">Select Industry</option>
-                                                <option>Web Development</option>
-                                                <option>Web Designing</option>
-                                                <option>Art & Culture</option>
-                                                <option>Reading & Writing</option>
-                                            </select>
-                                        </div>
-                                        <div class="error" *ngIf="isSubmitted && f.industry.errors?.required">
-                                            <small>Required</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <span class="pf-title">Qualification</span>
-                                        <div class="dropdown-field" >
-                                            <select data-placeholder="Please Select Qualification" [ngClass]="{
-                                            'feild-error': isSubmitted && f.qualification.errors?.required
-                                          }"
-                                                class="browser-default custom-select" formControlName="qualification">
+                                        <span class="pf-title">Minimum Qualification</span>
+                                        <div class="dropdown-field">
+                                            <select data-placeholder="Please Select Specialism" [ngClass]="{
+                                                                                'feild-error': isSubmitted && f.qual.errors?.required
+                                                                              }" class="browser-default custom-select"
+                                                formControlName="qual">
+                                                <option [selected]="true" disabled>Select Qualification</option>
                                                 <option disabled [selected]="true">Select Qualification</option>
                                                 <option>Secondary School Certificate</option>
                                                 <option>Higher Secondary Education</option>
@@ -150,38 +134,31 @@
                                                 <option>P.G</option>
                                             </select>
                                         </div>
-                                        <div class="error" *ngIf="isSubmitted && f.qualification.errors?.required">
+                                        <div class="error" *ngIf="isSubmitted && f.qual.errors?.required">
                                             <small>Required</small>
                                         </div>
                                     </div>
-
                                     <div class="col-lg-6">
-                                        <span class="pf-title">Skill Requirements</span>
-                                        <div class="dropdown-field" x>
-                                            <ul class="tags" [ngClass]="{
-                                            'feild-error': isSubmitted && f.requirements.errors?.required
-                                          }">
-                                                <li class="addedTag">Photoshop<span onclick="$(this).parent().remove();"
-                                                        class="tagRemove">x</span></li>
-                                                <li class="tagAdd taglist">
-                                                    <input type="text"  formControlName="requirements" id="search-field">
-                                                </li>
-                                            </ul>
+                                        <span class="pf-title">Skills</span>
+                                        <div class="pf-field">
+                                            <input type="text" id="skills" [ngClass]="{
+                                                                                    'feild-error': isSubmitted && f.skills.errors?.required
+                                                                                  }" placeholder="Job Title"
+                                                formControlName="skills" required />
                                         </div>
-                                        <div class="error" *ngIf="isSubmitted && f.requirements.errors?.required">
+                                        <div class="error" *ngIf="isSubmitted && f.skills.errors?.required">
                                             <small>Required</small>
                                         </div>
                                     </div>
-
                                     <div class="col-lg-6">
                                         <span class="pf-title">City</span>
-                                        <div class="dropdown-field" >
+                                        <div class="dropdown-field">
                                             <select data-placeholder="Please Select Specialism" [ngClass]="{
-                                            'feild-error': isSubmitted && f.city.errors?.required
-                                          }"
-                                                class="browser-default custom-select" formControlName="city">
+                                                                                'feild-error': isSubmitted && f.city.errors?.required
+                                                                              }" class="browser-default custom-select"
+                                                formControlName="city">
                                                 <option disabled [selected]="true">Select City</option>
-                                                <option>Hyderbad</option>
+                                                <option>Hyderabad</option>
                                                 <option>Guntur</option>
                                                 <option>Vizag</option>
                                                 <option>Vijayawada</option>
@@ -203,6 +180,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div [ngClass]="{'show-loader': loader}" class="loader-background-2">
+        <h4 class="loader-message">{{loading_message}}</h4>
+        <div class="loader">
         </div>
     </div>
 </section>

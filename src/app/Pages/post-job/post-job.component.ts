@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
-import { JobPost } from "src/app/Model/Job.model";
+import { EmployerService } from "src/app/services/employer.service";
+import { first } from "rxjs/operators";
 
 @Component({
   selector: "app-post-job",
@@ -8,56 +9,78 @@ import { JobPost } from "src/app/Model/Job.model";
   styleUrls: ["./post-job.component.css"]
 })
 export class PostJobComponent implements OnInit {
-  PostJob: FormGroup;
-  jobPost: JobPost;
+  PostJobForm: FormGroup;
+
+  loader: boolean = false;
+  loading_message: string;
+
   isSubmitted: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  allResponse: any;
+  postJobResponse: any;
 
-  get f() {
-    return this.PostJob.controls;
-  }
+  HaveRegistered: boolean;
+
+  constructor(
+    private employerService: EmployerService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
-    this.PostJob = this.formBuilder.group({
-      title: ["", Validators.compose([Validators.required])],
-      jobtype: ["", Validators.compose([Validators.required])],
-      description: [
-        "",
-        Validators.compose([Validators.required, Validators.minLength(160)])
-      ],
-      categories: ["", Validators.compose([Validators.required])],
+    this.PostJobForm = this.formBuilder.group({
+      jobtitle: ["", Validators.compose([Validators.required])],
+      industry: ["", Validators.compose([Validators.required])],
+      description: ["", Validators.compose([Validators.required])],
       experience: ["", Validators.compose([Validators.required])],
       salary: ["", Validators.compose([Validators.required])],
-
-      industry: ["", Validators.compose([Validators.required])],
-      qualification: ["", Validators.compose([Validators.required])],
-      requirements: ["", Validators.compose([Validators.required])],
+      qual: ["", Validators.compose([Validators.required])],
+      skills: ["", Validators.compose([Validators.required])],
       city: ["", Validators.compose([Validators.required])]
     });
+    this.getDetails();
+  }
+
+  get f() {
+    return this.PostJobForm.controls;
+  }
+
+  getDetails() {
+    let data = {
+      email: sessionStorage.getItem("employer")
+    };
+    this.employerService
+      .getAll(data)
+      .pipe(first())
+      .subscribe(data => {
+        this.allResponse = data;
+      });
   }
 
   onSubmit(e) {
     this.isSubmitted = true;
-    if (this.PostJob.valid) {
-      console.log(e);
-      this.jobPost = new JobPost();
-      this.jobPost.title = this.f.title.value;
-      this.jobPost.jobtype = this.f.jobtype.value;
-      this.jobPost.description = this.f.description.value;
-      this.jobPost.categories = this.f.categories.value;
-      this.jobPost.experience = this.f.experience.value;
-      this.jobPost.salary = this.f.salary.value;
-      this.jobPost.industry = this.f.industry.value;
-      this.jobPost.qualification = this.f.qualification.value;
-      this.jobPost.requirements = this.f.requirements.value;
-      this.jobPost.city = this.f.city.value;
-      // this.jobPostService
-      //   .GetRegister(this.register)
-      //   .pipe(first())
-      //   .subscribe(data => {
-      //     console.log("the component Data:" + data);
-      //   });
+    if (this.PostJobForm.valid) {
+      this.loader = true;
+      this.loading_message = "Posting Job. Please wait..";
+      let data = {
+        jobtitle: this.f.jobtitle.value,
+        industry: this.f.industry.value,
+        description: this.f.description.value,
+        experience: this.f.experience.value,
+        salary: this.f.salary.value,
+        qual: this.f.qual.value,
+        skills: (<HTMLInputElement>document.getElementById("skills")).value,
+        city: this.f.city.value
+      };
+      this.employerService
+        .postJob(data)
+        .pipe(first())
+        .subscribe(data => {
+          this.postJobResponse = data;
+          if (this.postJobResponse == "Job posted successfully") {
+            this.HaveRegistered = true;
+          }
+          this.loader = false;
+        });
     }
   }
 }

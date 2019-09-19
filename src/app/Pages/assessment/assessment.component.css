@@ -1,0 +1,14 @@
+.qna {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.qna > div > div > input[type="radio"] {
+  opacity: 1 !important;
+  position: relative;
+  z-index: 99;
+}
+.MCQ {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}

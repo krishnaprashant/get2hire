@@ -10,4 +10,6 @@
 }
 .circle {
   border-radius: 50%;
+  width: 125px;
+  height: 125px;
 }

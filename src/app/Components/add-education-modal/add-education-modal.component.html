@@ -1,0 +1,121 @@
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add Education</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <h5 class="response">{{response}}</h5>
+            <div class="modal-body">
+                <div class="border-title">
+                    <h3>Education</h3>
+                </div>
+                <form [formGroup]="eductionForm" (ngSubmit)="onSubmit($event)" novalidate>
+                    <div class="resumeadd-form">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span class="pf-title">Type</span>
+                                <div class="dropdown-field">
+                                    <select class="browser-default custom-select" [ngClass]="{
+                                                      'feild-error':
+                                                        isSubmitted && f.type.errors?.required
+                                                    }" formControlName="type" id="type">
+                                        <option disabled [selected]="true">Type of Institute</option>
+                                        <option>School</option>
+                                        <option>Junior College</option>
+                                        <option>Diploma</option>
+                                        <option>Under Graduation</option>
+                                        <option>Post Graduation</option>
+                                        <option>Higher Than Post graduate</option>
+                                    </select>
+                                </div>
+                                <div class="error" *ngIf="isSubmitted && f.type.errors?.required">
+                                    <small>Required</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <span class="pf-title">From Date</span>
+                                <div class="pf-field">
+                                    <input [ngClass]="{
+                                                      'feild-error':
+                                                        isSubmitted && f.from_date.errors?.required
+                                                    }" placeholder="eg 01-01-2015" formControlName="from_date"
+                                        type="date" class="form-control datepicker">
+                                </div>
+                                <div class="error" *ngIf="isSubmitted && f.from_date.errors?.required">
+                                    <small>Required</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <span class="pf-title">To Date</span>
+                                <div class="pf-field">
+                                    <input placeholder="eg 01-01-2015" formControlName="to_date" type="date"
+                                        class="form-control datepicker" [ngClass]="{
+                                                      'feild-error':
+                                                        isSubmitted && f.to_date.errors?.required
+                                                    }" />
+                                </div>
+                                <div class="error" *ngIf="isSubmitted && f.to_date.errors?.required">
+                                    <small>Required</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <span class="pf-title">Institute</span>
+                                <div class="pf-field">
+                                    <input type="text" formControlName="institute" placeholder="Institute name"
+                                        [ngClass]="{
+                                                      'feild-error':
+                                                        isSubmitted && f.institute.errors?.required
+                                                    }" />
+                                </div>
+                                <div class="error" *ngIf="isSubmitted && f.institute.errors?.required">
+                                    <small>Required</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <span class="pf-title">Board or University</span>
+                                <div class="pf-field">
+                                    <input type="text" formControlName="board" placeholder="Board or University name"
+                                        [ngClass]="{
+                                                      'feild-error':
+                                                        isSubmitted && f.board.errors?.required
+                                                    }" />
+                                </div>
+                                <div class="error" *ngIf="isSubmitted && f.board.errors?.required">
+                                    <small>Required</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <span class="pf-title">Course</span>
+                                <div class="pf-field">
+                                    <input type="text" formControlName="course"
+                                        placeholder="Course (for school put regular or non-regular)" [ngClass]="{
+                                                      'feild-error':
+                                                        isSubmitted && f.course.errors?.required
+                                                    }" />
+                                </div>
+                                <div class="error" *ngIf="isSubmitted && f.course.errors?.required">
+                                    <small>Required</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <button type="submit">{{button_save}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

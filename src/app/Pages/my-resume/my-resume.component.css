@@ -1,3 +1,19 @@
+.profile-circle {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.bottom-20 {
+  margin-bottom: 20px;
+}
 .top-30 {
   top: 30px;
+}
+.my-profile-circle {
+  border-radius: 50%;
+  width: 125px;
+  height: 125px;
+  float: right;
+}
+.profile-details > p {
+  font-size: 14px;
 }

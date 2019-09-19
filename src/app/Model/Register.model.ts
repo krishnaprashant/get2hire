@@ -5,9 +5,11 @@ export class Register {
   password: string;
   prefferedLocation: string;
   expertise: string;
+  experience: string;
   percentage: string;
   qualification: string;
   branch: string;
   passout: string;
+  gender: string;
   profilePic: string;
 }

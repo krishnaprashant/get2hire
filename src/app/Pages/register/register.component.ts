@@ -22,6 +22,10 @@ export class RegisterComponent implements OnInit {
   isSubmitted: boolean = false;
   picName: string;
 
+  HaveRegistered: boolean;
+
+  response: any;
+
   fileUpload = { status: "", message: "", filepath: "" };
 
   get f() {
@@ -88,7 +92,6 @@ export class RegisterComponent implements OnInit {
   onSubmit(e) {
     this.isSubmitted = true;
     if (this.RegisterForm.valid) {
-      console.log(e);
       const formData = new FormData();
       this.register = new Register();
       this.register.name = this.f.name.value;
@@ -97,16 +100,21 @@ export class RegisterComponent implements OnInit {
       this.register.password = this.f.password.value;
       this.register.prefferedLocation = this.f.prefferedLocation.value;
       this.register.expertise = this.f.expertise.value;
+      this.register.experience = this.f.experience.value;
       this.register.percentage = this.f.percentage.value;
       this.register.qualification = this.f.qualification.value;
       this.register.branch = this.f.branch.value;
       this.register.passout = this.f.passout.value;
-      this.register.profilePic = this.f.profilePic.value;
+      this.register.gender = this.f.gender.value;
+      this.register.profilePic = this.picName;
       this.registerService
         .GetRegister(this.register)
         .pipe(first())
         .subscribe(data => {
-          console.log("the component Data:" + data);
+          this.response = data;
+          if (this.response == "Applicant is Registered") {
+            this.HaveRegistered = true;
+          }
         });
       formData.append("picName", this.picName);
       formData.append("profile", this.RegisterForm.get("profilePic").value);
