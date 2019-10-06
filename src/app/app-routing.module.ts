@@ -59,7 +59,11 @@ const routes: Routes = [
     canActivate: [AuthEmpGuard],
     component: EmployerDashboardComponent
   },
-  { path: "employer-resume", component: EmployerResumeComponent },
+  {
+    path: "employer-resume",
+    canActivate: [AuthEmpGuard],
+    component: EmployerResumeComponent
+  },
   { path: "add-assessment", component: AddAssessmentComponent },
   { path: "assessment", component: AssessmentComponent }
 ];

@@ -29,7 +29,7 @@
           <div class="job-list-modern">
             <div class="job-listings-sec no-border">
 
-              <span *ngFor="let r of ResultResponse">
+              <span *ngFor="let r of ResultResponse | paginate : {itemsPerPage:10, currentPage:p}">
                 <!-- Job -->
                 <div class="job-listing wtabs">
                   <div class="job-title-sec">
@@ -61,7 +61,7 @@
               </span>
 
             </div>
-            <div class="pagination">
+            <!-- <div class="pagination">
               <ul>
                 <li class="prev">
                   <a href="#"><i class="la la-long-arrow-left"></i> Prev</a>
@@ -75,7 +75,8 @@
                   <a href="#">Next <i class="la la-long-arrow-right"></i></a>
                 </li>
               </ul>
-            </div>
+            </div> -->
+            <pagination-controls class="text-center" (pageChange)="p=$event"></pagination-controls>
             <!-- Pagination -->
           </div>
         </div>

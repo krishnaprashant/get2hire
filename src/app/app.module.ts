@@ -39,6 +39,7 @@ import { AddSkillsModalComponent } from "./Components/add-skills-modal/add-skill
 import { AddProjectsModalComponent } from "./Components/add-projects-modal/add-projects-modal.component";
 import { SnackbarComponent } from "./Components/snackbar/snackbar.component";
 import { TimeAgoPipe } from "time-ago-pipe";
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { TimeAgoPipe } from "time-ago-pipe";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     [AuthGuard],
